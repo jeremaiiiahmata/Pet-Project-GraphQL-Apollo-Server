@@ -15,7 +15,7 @@ export const typeDefs = `#graphql
 
     type Post {
         postId: ID!
-        userId: ID!
+        userId: ID
         postVotes: [postVote]!
         title: String!
         content: String!
@@ -43,6 +43,22 @@ export const typeDefs = `#graphql
         postId: ID
         upVote: Int
         downVote: Int
+    }
+
+    type Mutation {
+        addPost(post: AddPostInput!) : Post
+        deletePost(id: ID!): [Post]
+        editPost(id: ID!, edit: EditPostInput!): Post
+    }
+
+    input AddPostInput {
+        title: String!
+        content: String!
+    }
+
+    input EditPostInput{
+        title:String,
+        content:String,
     }
 
 `

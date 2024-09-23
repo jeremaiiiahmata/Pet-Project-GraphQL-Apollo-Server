@@ -35,8 +35,41 @@ const resolvers = {
         commentVotes(parent){
             return db.commentVotes.find((commentVote) => commentVote.commentId === parent.commentId)
         }
+    },
+
+    Mutation: {
+        deletePost(_, args) {
+            db.posts = db.posts.filter((post) => post.postId !== args.id)
+
+            return db.posts
+        },
+
+        addPost(_, args){
+            const post = {
+                ...args.post,
+                postId: Math.floor(Math.random() * 10000).toString() // creates a random number and converts it into string.
+            }
+
+            db.posts.push(post);
+
+            return post;
+        },
+
+        editPost(_, args){
+            db.posts = db.posts.map((post) => {
+                if (post.postId === args.id){
+                    return {...post, ...args.edit};
+                }
+
+                return post;
+            })
+
+            return db.posts.find((post) => post.postId === args.id);
+        }
+
     }
 
+        
 
 
 

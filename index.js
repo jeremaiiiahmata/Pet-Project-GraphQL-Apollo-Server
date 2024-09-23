@@ -12,52 +12,61 @@ const PORT = 3030;
 
 const resolvers = { 
     Query: { // root type - defined in the typeDef.js
-        games() {
-            return db.games
+        posts(){
+            return db.posts
         },
-        game(parent, args, context){
-            return db.games.find((game) => game.id === args.id);
-        },
-        reviews(){
-            return db.reviews
-        },
-        review(parent, args, context){
-            return db.reviews.find((review) => review.id === args.id)
-        },
-        authors(){
-            return db.authors
-        },
-        author(){
-            return db.authors.find((author) => author.id === args.id)
-        }
-    },
-    
-    Game: { //the object name should be the same with its type name, in this case, the 'Game' type (fig 1.1). this is the type and we're creating
-        // a function that will get the reviews of a specific game.
-        reviews(parent) { // parent is the reference to the value returned by the previous parent resolver, in this case the game() resolver func.
 
-            return db.reviews.filter((review) => review.game_id === parent.id);
-            // this checks each element in the array. 
-            // the (review) parameter will handle each element, and checks it game_id and compare it to the id of the parent (game_id).
+        post(parent, args, context){
+            return db.posts.find((post) => post.postId === args.id);
         }
     },
 
-    Author: { // the object name is Author, just like in the typeDef (fig 1.2). this is the type and we're creting a function for how
-        // will we get the reviews of a certain author
-        reviews(parent){ // calls the resolver function, passing the parent parameter (which is the author)
-            return db.reviews.filter((review) => review.author_id === parent.id);
+    Post: {
+        comments(parent){
+            return db.comments.filter((comment) => comment.postId === parent.postId)
+        },
+
+        postVotes(parent){
+            return db.postVotes.filter((vote) => vote.postId === parent.postId)
         }
     },
 
-    Review: { // the object is Review, same as the typeDef (fig 1.3). this is the type and we're creating a function where we will
-        // get the specific game for a certain review. 
-        game(parent){ // call the game resolver function, passing the parent parameter (reviews)
-            return db.games.find((game) => game.id === parent.game_id); // traverses through the game array, and checks if the game_id of the array
-            // is the same as the game_id of the parent (review), the review object must contain a game_id. if there is none, it won't return anything.
-
-            // returns the first element that matches the condition. 
+    Comment: {
+        commentVotes(parent){
+            return db.commentVotes.find((commentVote) => commentVote.commentId === parent.commentId)
         }
     }
+
+
+
+
+    
+    // Game: { //the object name should be the same with its type name, in this case, the 'Game' type (fig 1.1). this is the type and we're creating
+    //     // a function that will get the reviews of a specific game.
+    //     reviews(parent) { // parent is the reference to the value returned by the previous parent resolver, in this case the game() resolver func.
+
+    //         return db.reviews.filter((review) => review.game_id === parent.id);
+    //         // this checks each element in the array. 
+    //         // the (review) parameter will handle each element, and checks it game_id and compare it to the id of the parent (game_id).
+    //     }
+    // },
+
+    // Author: { // the object name is Author, just like in the typeDef (fig 1.2). this is the type and we're creting a function for how
+    //     // will we get the reviews of a certain author
+    //     reviews(parent){ // calls the resolver function, passing the parent parameter (which is the author)
+    //         return db.reviews.filter((review) => review.author_id === parent.id);
+    //     }
+    // },
+
+    // Review: { // the object is Review, same as the typeDef (fig 1.3). this is the type and we're creating a function where we will
+    //     // get the specific game for a certain review. 
+    //     game(parent){ // call the game resolver function, passing the parent parameter (reviews)
+    //         return db.games.find((game) => game.id === parent.game_id); // traverses through the game array, and checks if the game_id of the array
+    //         // is the same as the game_id of the parent (review), the review object must contain a game_id. if there is none, it won't return anything.
+
+    //         // returns the first element that matches the condition. 
+    //     }
+    // }
 }
 
 // takes in an object as an argument and expects 2 properties

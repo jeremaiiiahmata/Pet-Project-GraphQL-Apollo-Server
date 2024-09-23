@@ -1,36 +1,48 @@
 export const typeDefs = `#graphql
     
     type Query{ 
-        reviews: [Review!]!
-        review(id: ID!): Review
-        games: [Game!]!
-        game(id: ID!): Game
-        authors: [Author!]!
-        author(id: ID!): Author
+        posts: [Post!]!
+        post(id: ID!): Post
+        comments: [Comment!]!
 
     }
 
-    type Game {
-        id: ID!
-        title: String
-        platform: [String!]!
-        reviews: [Review!]
+    type userVote {
+        userId: ID!
+        oostId: ID!
+        vote: Boolean!
     }
 
-    type Review {
-        id: ID!
-        rating: Int!
+    type Post {
+        postId: ID!
+        userId: ID!
+        postVotes: [postVote]!
+        title: String!
         content: String!
-        game: Game!
-        author: Author!
+        comments: [Comment!]!
         
     }
 
-    type Author{
-        id: ID!
-        name: String!
-        verified: Boolean!
-        reviews: [Review!]
+    type Comment{
+        commentId: ID!
+        userId: ID!
+        postId: ID!
+        content: String!
+        commentVotes: commentVote!
+    }
+
+    type postVote{
+        postVoteId: ID!
+        postId: ID!
+        upVote: Int!
+        downVote: Int!
+    }
+
+    type commentVote{
+        commentVoteId: ID
+        postId: ID
+        upVote: Int
+        downVote: Int
     }
 
 `

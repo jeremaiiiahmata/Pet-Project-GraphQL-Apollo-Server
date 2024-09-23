@@ -1,25 +1,43 @@
-let games = [
-    {id: '1', title: 'Zelda, Tears of the Kingdom', platform: ['Switch']},
-    {id: '2', title: 'Final Fantasy 7 Remake', platform: ['PS5', 'Xbox']},
-    {id: '3', title: 'Elden Ring', platform: ['PS5', 'Xbox', 'PC']},
-    {id: '4', title: 'Mario Kart', platform: ['Switch']},
-    {id: '5', title: 'Pokemon Scarlet', platform: ['PS5', 'Xbox', 'PC']},
+  let comments = [
+    {commentId: '1', userId: '1', postId: '1', content: 'hi'},
+    {commentId: '2', userId: '2', postId: '1', content: 'wow'},
+    {commentId: '3', userId: '3', postId: '3', content: 'nice!'},
+    {commentId: '4', userId: '3', postId: '2', content: 'fantastic!'},
   ]
   
-  let authors = [
-    {id: '1', name: 'mario', verified: true},
-    {id: '2', name: 'yoshi', verified: false},
-    {id: '3', name: 'peach', verified: true},
+  let posts = [
+    {postId: '1', userId:'1', voteId: '1', title:'title-1', content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sodales, tellus a posuere lacinia,', },
+    {postId: '2', userId:'2', voteId: '2', title:'title-2', content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sodales, tellus a posuere lacinia,', },
+    {postId: '3', userId:'2', voteId: '3', title:'title-3', content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sodales, tellus a posuere lacinia,', },
+    {postId: '4', userId:'3', voteId: '4', title:'title-4', content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sodales, tellus a posuere lacinia,', },
+    {postId: '5', userId:'4', voteId: '5', title:'title-5', content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sodales, tellus a posuere lacinia,', },
+    {postId: '6', userId:'5', voteId: '6', title:'title-6', content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sodales, tellus a posuere lacinia,', },
+    {postId: '7', userId:'6', voteId: '7', title:'title-7', content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sodales, tellus a posuere lacinia,', }
+  ]
+
+  let commentVotes = [
+    {commentVoteId: '1', commentId: '1', upVote: '1', downVote: '0'},
+    {commentVoteId: '2', commentId: '2', upVote: '19', downVote: '0'},
+    {commentVoteId: '3', commentId: '3', upVote: '43', downVote: '0'},
+    {commentVoteId: '4', commentId: '4', upVote: '11', downVote: '0'}
+  ]
+
+  let postVotes = [
+    {postVoteId: '1', postId: '1', upVote: '1', downVote: '1'},
+    {postVoteId: '2', postId: '1', upVote: '2', downVote: '1'},
+    {postVoteId: '3', postId: '1', upVote: '3', downVote: '1'},
+    {postVoteId: '4', postId: '4', upVote: '4', downVote: '1'},
+    {postVoteId: '5', postId: '5', upVote: '5', downVote: '1'}
+  ]
+
+  let userVotes = [
+    {userId: '1', postId: '2', vote: true},
+    {userId: '2', postId: '2', vote: true},
+    {userId: '3', postId: '2', vote: true},
+    {userId: '3', postId: '2', vote: true},
+    {userId: '4', postId: '2', vote: true},
+    {userId: '5', postId: '2', vote: true},
+    {userId: '6', postId: '2', vote: true}
   ]
   
-  let reviews = [
-    {id: '1', rating: 9, content: 'lorem ipsum', author_id: '1', game_id: '2'},
-    {id: '2', rating: 10, content: 'lorem ipsum', author_id: '2', game_id: '1'},
-    {id: '3', rating: 7, content: 'lorem ipsum', author_id: '3', game_id: '3'},
-    {id: '4', rating: 5, content: 'lorem ipsum', author_id: '2', game_id: '4'},
-    {id: '5', rating: 8, content: 'lorem ipsum', author_id: '2', game_id: '5'},
-    {id: '6', rating: 7, content: 'lorem ipsum', author_id: '1', game_id: '2'},
-    {id: '7', rating: 10, content: 'lorem ipsum', author_id: '3', game_id: '1'},
-  ]
-  
-  export default { games, authors, reviews }
+  export default { posts, comments, commentVotes, postVotes, userVotes }
